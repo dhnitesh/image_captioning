@@ -7,12 +7,8 @@ model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-cap
 feature_extractor = ViTImageProcessor.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
 tokenizer = AutoTokenizer.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
 
-# Set pad token to avoid warnings
-if tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
 
-# Use CPU for now due to RTX 5070 compatibility issues with current PyTorch
-device = torch.device("cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 model.to(device)
 
@@ -30,7 +26,6 @@ def predict_step(image_paths):
   images = []
   for image_path in image_paths:
     i_image = Image.open(image_path)
-    # Convert palette images with transparency to RGBA first, then to RGB
     if i_image.mode == "P" and "transparency" in i_image.info:
       i_image = i_image.convert("RGBA")
     if i_image.mode != "RGB":
@@ -41,7 +36,6 @@ def predict_step(image_paths):
   pixel_values = feature_extractor(images=images, return_tensors="pt").pixel_values
   pixel_values = pixel_values.to(device)
 
-  # Generate with proper token configuration to avoid warnings
   output_ids = model.generate(
     pixel_values,
     pad_token_id=tokenizer.pad_token_id,

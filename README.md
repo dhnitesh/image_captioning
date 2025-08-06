@@ -1,166 +1,109 @@
-# Image Captioning Project with ViT-GPT2
+# 🎭 AI Image Caption Generator: Because Even Your Photos Need a Comedian
 
-This project implements an image captioning system using the pre-trained **nlpconnect/vit-gpt2-image-captioning** model from Hugging Face. The model combines Vision Transformer (ViT) for image encoding and GPT-2 for text generation.
+Welcome to the most sarcastic, witty, and occasionally accurate image captioning tool in the universe! 🌍✨
 
-## Features
+## 🤖 What Does This Magic Do?
 
-- 🖼️ **Pre-trained Model**: Uses the high-quality ViT-GPT2 model for immediate caption generation
-- 🔧 **Fine-tuning Support**: Option to fine-tune the model on your custom dataset
-- 📁 **Batch Processing**: Process multiple images at once
-- 🎯 **Multiple Caption Generation**: Generate diverse captions for the same image
-- 📊 **Detailed Reports**: Generate comprehensive reports of captioning results
+Ever looked at a photo and thought, "I wonder what an AI would say about this?" Well, wonder no more! This little digital genius will:
 
-## Project Structure
+- 👀 Stare at your images with the intensity of a thousand suns
+- 🧠 Think *really* hard (like, REALLY hard) about what it sees
+- 🗣️ Spit out captions that range from "surprisingly accurate" to "hilariously wrong"
+- 🎪 Provide endless entertainment for you and your friends
 
-```
-image_captioning/
-├── data/
-│   ├── train_images/      # Directory for training images
-│   └── captions.json      # Annotations and captions for images
-├── scripts/
-│   ├── infer.py           # Single image inference script
-│   ├── batch_process.py   # Batch processing script
-│   └── train.py           # Fine-tuning script (optional)
-├── models/
-│   └── vit_gpt2_model.py  # ViT-GPT2 model wrapper
-├── utils/
-│   └── image_utils.py     # Utility functions
-├── requirements.txt       # Python dependencies
-└── README.md             # This file
-```
+## 🚀 Features That Will Blow Your Mind (Or At Least Mildly Amuse You)
 
-## Installation
+- **State-of-the-Art AI**: Uses a Vision Transformer that probably knows more about your photos than you do
+- **GPU Support**: Works with CUDA (if your GPU is from this century)
+- **CPU Fallback**: Don't have a fancy GPU? No problem! It'll run on your toaster if needed
+- **Elephant Detection**: Surprisingly good at spotting elephants (see `ele.jpg` for proof!)
+- **Warning Generator**: Comes with free warnings about attention masks (because who doesn't love a good warning?)
 
-1. **Clone or download** this project to your local machine
+## 🛠️ Installation (The "Please Don't Break Your Computer" Guide)
 
-2. **Install dependencies**:
+1. **Clone this masterpiece:**
+   ```bash
+   git clone https://github.com/dhnitesh/image_captioning.git
+   cd image_captioning
+   ```
+
+2. **Create a virtual environment (because isolation is key):**
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate  # On Windows
+   # source venv/bin/activate  # On Mac/Linux
+   ```
+
+3. **Install the magical dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Verify installation** by running a test inference:
+4. **Cross your fingers and pray to the AI gods** 🙏
+
+## 🎮 How to Use This Digital Oracle
+
+1. **Put your image in the folder** (we've included a sample elephant because... elephants are cool)
+
+2. **Run the script:**
    ```bash
-   cd scripts
-   python infer.py --image path/to/test/image.jpg
+   python demo.py
    ```
 
-## Usage
+3. **Watch in amazement** as the AI either:
+   - Correctly identifies your image ✅
+   - Comes up with something hilariously wrong ❌
+   - Has an existential crisis about attention masks 🤔
 
-### Single Image Captioning
+## 📸 Example Output
 
-Generate a caption for a single image:
-
-```bash
-cd scripts
-python infer.py --image path/to/your/image.jpg
+```
+Using device: cpu (because your GPU said "nah, bro")
+Prediction: ['elephants standing in a grassy field']
 ```
 
-**Advanced options**:
-```bash
-# Generate multiple diverse captions
-python infer.py --image image.jpg --multiple 3 --temperature 1.2
+*Translation: "I see big gray things in green stuff. I'm probably right."*
 
-# Customize caption length and beam search
-python infer.py --image image.jpg --max_length 20 --num_beams 6
+## ⚠️ Warning Labels (Because Lawyers Exist)
 
-# Use a locally saved model
-python infer.py --image image.jpg --model "../models/my_fine_tuned_model"
-```
+- May cause uncontrollable laughter
+- Side effects include: questioning AI intelligence, wondering why you installed this, and showing it to all your friends
+- Not recommended for professional photography captioning (unless you want some very confused clients)
+- May develop a personality and start judging your photo-taking skills
 
-### Batch Processing
+## 🐛 Known Issues (Features, Really)
 
-Process multiple images in a directory:
+- Sometimes thinks everything is a hospital bed (we're working on its medical degree)
+- Occasional existential warnings about pad tokens
+- May require therapy after seeing your vacation photos
+- GPU compatibility issues with RTX 5070 (it's too new and fancy for us mere mortals)
 
-```bash
-cd scripts
-python batch_process.py --input path/to/image/directory --output captions.json
-```
+## 🤝 Contributing
 
-**Options**:
-```bash
-# Process recursively and generate report
-python batch_process.py --input images/ --output results.json --report report.txt --recursive
+Got ideas to make this even more ridiculous? Want to teach it new ways to misidentify objects? Pull requests welcome! 
 
-# Custom model and parameters
-python batch_process.py --input images/ --model custom_model --max_length 20 --num_beams 6
-```
+Bonus points if you can make it funnier than it already is (challenge accepted).
 
-### Fine-tuning (Optional)
+## 📄 License
 
-Fine-tune the model on your custom dataset:
+This project is licensed under the "Do Whatever You Want But Don't Blame Us" license. 
 
-1. **Prepare your data**:
-   - Place training images in `data/train_images/`
-   - Create `data/captions.json` with the format:
-     ```json
-     [
-       {"image": "image1.jpg", "caption": "A description of image1"},
-       {"image": "image2.jpg", "caption": "A description of image2"}
-     ]
-     ```
+## 🎉 Special Thanks
 
-2. **Start fine-tuning**:
-   ```bash
-   cd scripts
-   python train.py --epochs 5 --batch_size 4 --learning_rate 5e-5
-   ```
+- To the elephants who posed for `ele.jpg` 🐘
+- To PyTorch for making AI accessible to mere mortals
+- To transformers library for doing the heavy lifting while we take the credit
+- To caffeine for making this project possible ☕
 
-## Model Information
+## 🔮 Future Plans
 
-- **Base Model**: `nlpconnect/vit-gpt2-image-captioning`
-- **Vision Encoder**: Vision Transformer (ViT-base-patch16-224)
-- **Text Decoder**: GPT-2
-- **Input Resolution**: 224x224 pixels
-- **Supported Formats**: JPG, JPEG, PNG, BMP, TIFF, WebP
+- [ ] Teach it to be even more sarcastic
+- [ ] Add support for memes (because why not?)
+- [ ] Make it write poetry about your photos
+- [ ] World domination (just kidding... or are we?)
 
-## Examples
+---
 
-### Basic Usage
-```python
-from models.vit_gpt2_model import ViTGPT2ImageCaptioning
+*Made with ❤️, Python, and a questionable sense of humor*
 
-# Load the model
-model = ViTGPT2ImageCaptioning()
-
-# Generate a caption
-caption = model.generate_caption("image.jpg")
-print(caption)  # Output: "a dog sitting on a couch"
-
-# Generate multiple captions
-captions = model.generate_multiple_captions("image.jpg", num_captions=3)
-```
-
-### Configuration Options
-
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `max_length` | Maximum caption length | 16 |
-| `num_beams` | Beam search width | 4 |
-| `temperature` | Sampling temperature | 1.0 |
-| `multiple` | Number of captions to generate | 1 |
-
-## Requirements
-
-- Python 3.7+
-- PyTorch ≥ 1.9.0
-- Transformers ≥ 4.20.0
-- Pillow (PIL)
-- NumPy
-
-## Troubleshooting
-
-**GPU Memory Issues**: If you encounter CUDA out of memory errors, try:
-- Reducing batch size: `--batch_size 2`
-- Using CPU: The model will automatically fallback to CPU if CUDA is unavailable
-
-**Model Loading Issues**: Ensure you have a stable internet connection for the first run to download the pre-trained model.
-
-**Image Format Issues**: Ensure your images are in supported formats and not corrupted.
-
-## License
-
-This project uses the MIT License. The pre-trained model follows the license terms of the original nlpconnect/vit-gpt2-image-captioning model.
-
-## License
-
-[Your license information here]
+**Remember: If the AI starts giving you life advice, it's time to take a break and go outside! 🌞**
